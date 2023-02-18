@@ -1,6 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
 
+import Todo from './components/Todo';
+
+
 function App() {
   const [newTodo, setNewTodo] = useState("");
   const [todos, setTodos] = useState([]);
@@ -17,7 +20,7 @@ function App() {
       complete: false
     }
     
-    setTodos([... todos, newTodo])
+    setTodos([... todos, todoItem])
     setNewTodo("");
   };
 
@@ -56,15 +59,15 @@ function App() {
           <div><button>Add</button></div>
         </form>
 
-        <label>Here are your todos:</label>
         {todos.map((todo, i) => {
             return (
-              <div key = {i}>
-                <span>{todo.text}</span>
-                <input checked={todo.complete} type="checkbox" onChange ={(e) => handleToggleComplete(i)}/>
-                <button onClick={(e) => {
-                  handleTodoDelete(i)}} style={{marginLeft:"20px"}}>Delete</button>
-              </div>
+              <Todo 
+              key={i} 
+              i={i} 
+              todo={todo} 
+              handleToggleComplete={handleToggleComplete} 
+              handleTodoDelete={handleTodoDelete} 
+              />
             );
           })}
     </div>
