@@ -13,7 +13,7 @@ const userObj = () => ({
     password: faker.internet.password(),
 });
 
-const companyObj =() => ({
+const companyObj = () => ({
     _id: faker.datatype.uuid(),
     name: faker.company.name(),
     address: {
@@ -23,7 +23,7 @@ const companyObj =() => ({
         zipCode: faker.address.zipCode(),
         country: faker.address.country(),
     },
-})
+});
 
 // req is short for request
 // res is short for response
