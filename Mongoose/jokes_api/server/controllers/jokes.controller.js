@@ -24,7 +24,7 @@ module.exports.findAllJokes = (req, res) => {
 // module.exports = {findAllJokes};
 
 module.exports.findOneJoke = (req, res) => {
-    Joke.findOne({_id: req.params.id})
+    Joke.findOne({_id: req.params._id})
         .then(oneJoke => {
             res.json({joke: oneJoke})
         })
@@ -52,7 +52,7 @@ module.exports.createJoke = (req, res) => {
 }
 
 module.exports.updateJoke = (req, res) => {
-    Joke.findOneAndUpdate({_id: req.params.id}, req.body,{new: true, runValidators: true})
+    Joke.findOneAndUpdate({_id: req.params._id}, req.body,{new: true, runValidators: true})
         .then(updatedJoke => {
             res.json({joke: updatedJoke})
         })
@@ -62,7 +62,7 @@ module.exports.updateJoke = (req, res) => {
 }
 
 module.exports.deleteJoke = (req, res) => {
-    Joke.deleteOne({_id: req.params.id})
+    Joke.deleteOne({_id: req.params._id})
         .then(result => {
             res.json({result: result})
         })
