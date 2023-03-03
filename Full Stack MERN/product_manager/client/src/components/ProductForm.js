@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Product = (props) => {
+const ProductForm = (props) => {
+    const {product, setProduct} = props;
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [desc, setDesc] = useState("");
@@ -9,7 +10,7 @@ const Product = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8000/api/products", {
-            title, price, setDesc
+            title, price, desc
         })
         .then ((res) => {
             console.log(res);
@@ -53,4 +54,4 @@ const Product = (props) => {
     )
 }
 
-export default Product;
+export default ProductForm;
