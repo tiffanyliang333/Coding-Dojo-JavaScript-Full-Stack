@@ -50,6 +50,7 @@ const ProductForm = (props) => {
                     <input type="submit" value="Create"/>
                 </div>
             </form>
+            <p>________________________________________________</p>
         </div>
     )
 }
