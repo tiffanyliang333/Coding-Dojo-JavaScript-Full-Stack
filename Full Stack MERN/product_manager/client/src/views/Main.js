@@ -8,7 +8,7 @@ const Main = (props) => {
     return (
         <div>
             <ProductForm product = {product} setProduct = {setProduct} />
-            <ProductList product = {product} setProduct = {setProduct} />
+            <ProductList product = {product} setProduct = {setProduct}  />
         </div>
     )
 }

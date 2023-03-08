@@ -19,7 +19,6 @@ const Detail = (props) => {
 
     return(
         <div>
-            <header>Product</header>
                 <h2>{productDetail.title}</h2>
                 <p>Price: ${productDetail.price}</p>
                 <p>Description: {productDetail.desc}</p>
