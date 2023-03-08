@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const dbName = 'product_manager';
 
 mongoose.connect('mongodb://127.0.0.1:27017/product_manager', {
     useNewUrlParser: true,

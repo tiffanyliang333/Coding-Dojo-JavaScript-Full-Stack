@@ -1,33 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import axios from 'axios';
 
 const Detail = (props) => {
-    const [product, setProduct] = useState({})
     const {id} = useParams();
+    const [productDetail, setProductDetail] = useState({});
+
     useEffect(() => {
-        axios.get("http://localhost:8000/api/people/" + id)
-        .then(res => {
+        axios.get(`http://localhost:8000/api/products/${id}`)
+        .then((res) => {
             console.log(res.data);
-            setProduct(res.data);
+            setProductDetail(res.data);
         })
-        .catch(err => console.log(err));
-    }, []);
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [id]);
 
     return(
         <div>
-            <header>All Products:</header>
-            {
-                product.map((product,index) => (
-                    <div key ={index}>
-                        <Link to={'/products/${product._id}'}>
-                            {product.title}
-                        </Link>
-                    </div>
-                ))
-            }
+            <header>Product</header>
+                <h2>{productDetail.title}</h2>
+                <p>Price: ${productDetail.price}</p>
+                <p>Description: {productDetail.desc}</p>
         </div>
     );
-}
+};
 
 export default Detail;

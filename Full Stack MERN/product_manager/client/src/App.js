@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Main from '../views/Main';
+import Main from './views/Main';
+import Detail from './components/Detail';
 import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
         <Routes>
           <Route element = {<Main />} path="/products" />
           <Route element={<Detail />} path="/products/:id" />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
