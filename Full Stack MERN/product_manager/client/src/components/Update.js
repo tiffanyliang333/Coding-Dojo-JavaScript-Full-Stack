@@ -12,20 +12,20 @@ const Update = (props) => {
     const [headerTitle, setHeaderTitle] = useState("");
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/product/${id}`)
+        axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {
                 console.log(res.data)
-                setTitle(res.data.title);
-                setPrice(res.data.price);
-                setDesc(res.data.desc);
-                setHeaderTitle(res.data.title);
+                setTitle(res.data.product.title);
+                setPrice(res.data.product.price);
+                setDesc(res.data.product.desc);
+                setHeaderTitle(res.data.product.title);
             })
             .catch(err => console.log(err))
-    }, [id])
+    }, [])
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/product/${id}`, {
+        axios.put(`http://localhost:8000/api/products/edit/${id}`, {
             title,
             price,
             desc,
@@ -33,7 +33,7 @@ const Update = (props) => {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-                navigate("/");
+                navigate("/products");
             })
             .catch(err => {console.log(err)});
     };
