@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const New = (props) => {
     const {author, setAuthor} = props;
     const [name, setName] = useState("");
+    const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -15,6 +16,7 @@ const New = (props) => {
             console.log(res);
             console.log(res.data);
             setName("");
+            navigate("/authors");
         })
         .catch((err) => {
             console.log(err);
@@ -41,7 +43,7 @@ const New = (props) => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default New;

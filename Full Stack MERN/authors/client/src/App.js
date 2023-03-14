@@ -4,7 +4,7 @@ import Update from './components/Update';
 import New from './components/New';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="App">

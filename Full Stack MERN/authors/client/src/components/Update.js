@@ -10,7 +10,7 @@ const Update = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/authors/${id}`)
             .then(res => {
-                console.log(res.data);
+                console.log(res.data.author);
                 setName(res.data.author.name);
             })
             .catch(err => console.log(err))
@@ -18,12 +18,12 @@ const Update = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`httpL//localhost:8000/api/authors/edit/${id}`, {
+        axios.put(`http://localhost:8000/api/authors/edit/${id}`, {
             name,
         })
             .then(res => {
                 console.log(res);
-                console.log(res.data);
+                console.log(res.data.author);
                 navigate("/authors");
             })
             .catch(err => {console.log(err)});
@@ -50,7 +50,7 @@ const Update = (props) => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default Update;

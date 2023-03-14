@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 
 const AuthorList = (props) => {
-    const {author, setAuthor} = props;
+    const [author, setAuthor] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const AuthorList = (props) => {
                                     <tr key={index}>
                                         <td>{author.name}</td>
                                         <td>
-                                            <Link to ={`/edit/${author._id}`}>
+                                            <Link to ={`/authors/edit/${author._id}`}>
                                                 <button className="btn btn-primary">Edit</button>
                                             </Link>
                                             <button onClick={(e) => {deleteAuthor(author._id)}}>
