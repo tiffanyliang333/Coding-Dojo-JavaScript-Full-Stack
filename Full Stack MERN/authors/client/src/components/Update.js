@@ -7,13 +7,19 @@ const Update = (props) => {
     const [name, setName] = useState("");
     const navigate = useNavigate();
 
+    const [errors, setErrors] = useState({});
+    const [authorNotFoundErr, setAuthorNotFoundErr] = useState("");
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/authors/${id}`)
             .then(res => {
                 console.log(res.data.author);
                 setName(res.data.author.name);
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(err.res);
+                setAuthorNotFoundErr('Author not found.');
+            })
     }, [])
 
     const submitHandler = (e) => {
@@ -26,7 +32,10 @@ const Update = (props) => {
                 console.log(res.data.author);
                 navigate("/authors");
             })
-            .catch(err => {console.log(err)});
+            .catch((err) => {
+                console.log(err.response.data.err.errors);
+                setErrors(err.response.data.err.errors);
+            });
     };
 
     return(
@@ -34,6 +43,7 @@ const Update = (props) => {
             <Link to="/authors">Home</Link>
             <p className="purple-text">Edit this author:</p>
             <form onSubmit = {submitHandler}>
+                {authorNotFoundErr ? <h2>{authorNotFoundErr}</h2> : null}
                 <div>
                     <label>Name: </label>
                 </div>
@@ -41,6 +51,7 @@ const Update = (props) => {
                     <input type="text" value={name} name="name" onChange = {(e) => {
                         setName(e.target.value);
                     }} />
+                    {errors.name ? <p>{errors.name.message}</p> : null}
                 </div>
                 <div>
                     <Link to="/authors">

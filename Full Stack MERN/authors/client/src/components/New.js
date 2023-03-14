@@ -7,6 +7,8 @@ const New = (props) => {
     const [name, setName] = useState("");
     const navigate = useNavigate();
 
+    const [errors, setErrors] = useState([]);
+
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:8000/api/authors`, {
@@ -18,15 +20,17 @@ const New = (props) => {
             setName("");
             navigate("/authors");
         })
-        .catch((err) => {
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err.response.data.err.errors);
+                setErrors(err.response.data.err.errors);
+            })
     }
     return (
         <div>
             <Link to="/authors">Home</Link>
             <p className="purple-text">Add a new author:</p>
             <form onSubmit = {submitHandler}>
+                {/* {errors.map((err, index) => <p key={index}>{err}</p>)} */}
                 <div>
                     <label>Name: </label>
                 </div>
@@ -34,6 +38,7 @@ const New = (props) => {
                     <input type="text" value={name} name="name" onChange = {(e) => {
                         setName(e.target.value);
                     }} />
+                    {errors.name ? <p>{errors.name.message}</p> : null}
                 </div>
                 <div>
                     <Link to="/authors">
