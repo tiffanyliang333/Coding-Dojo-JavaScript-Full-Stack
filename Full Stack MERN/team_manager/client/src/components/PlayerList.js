@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import Header from './Header';
 import SubHeader1 from './SubHeader1';
 
 const PlayerList = (props) => {

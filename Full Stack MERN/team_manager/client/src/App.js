@@ -1,24 +1,19 @@
 import {useState} from 'react';
-import {BrowserRouter, Router, Route} from 'react-router-dom';
-import Header from './components/Header';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Main from './views/Main';
+import AddPlayerForm from './views/AddPlayerForm';
+import GameStatus from './views/GameStatus';
 import './App.css';
 
-function App() {
-  const [listActive, setListActive] = useState(true);
-  const [manageStatusActive, setManageStatusActive] = useState(false);
-
+const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header 
-          manageStatusActive = {manageStatusActive}
-          setManageStatusActive = {manageStatusActive}/>
-        <Router>
-          <PlayerList path ="/player/list"
-          listActive = {listActive}
-          setListActive = {setListActive}
-          setManageStatusActive = {setManageStatusActive} />
-        </Router>
+        <Routes>
+          <Route element = {<Main />} path = "/player/list" />
+          <Route element = {<AddPlayerForm />} path = "/player/new" />
+          <Route element = {<GameStatus />} path = "/status/game/1" />
+        </Routes>
       </div>
     </BrowserRouter>
   );
