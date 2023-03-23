@@ -37,13 +37,14 @@ const AuthorList = (props) => {
                     <p className="purple-text">We have quotes by:</p>
                     <table className="table">
                         <thead>
+                        <button onClick={sortByAlph}>Sort by Alphabetical Order</button>
                             <tr>
                                 <th>Author</th>
                                 <th>Actions Available</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <button onClick={sortByAlph}>Sort by Alphabetical Order</button>
+                            
                             {author.map((author, index) => {
                                 return (
                                     <tr key={index}>
