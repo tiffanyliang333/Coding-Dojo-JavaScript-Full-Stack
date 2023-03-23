@@ -24,6 +24,11 @@ const AuthorList = (props) => {
             .catch(err => console.log(err))
     }
 
+    function sortByAlph() {
+        const sortedAuthors = [...author].sort((a,b) =>a.name.localeCompare(b.name));
+        setAuthor(sortedAuthors);
+    }
+
     return(
         <div className="container">
             <div className="row">
@@ -38,6 +43,7 @@ const AuthorList = (props) => {
                             </tr>
                         </thead>
                         <tbody>
+                            <button onClick={sortByAlph}>Sort by Alphabetical Order</button>
                             {author.map((author, index) => {
                                 return (
                                     <tr key={index}>
